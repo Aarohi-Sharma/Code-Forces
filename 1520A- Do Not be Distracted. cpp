@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int t;
+    cin >> t;
+    vector<string> out(t);
+    for (int i = 0; i < t; i++) {
+        vector<int> alpha(26, 0);
+        int n;
+        cin >> n;
+        string in;
+        cin >> in;
+        bool suspicious = false;
+        char last = in[0];
+        alpha[last - 'A'] = 1;
+        for (int j = 1; j < n; j++) {
+            if (in[j] != last) {
+                if (alpha[in[j] - 'A'] == 1) {
+                    suspicious = true;
+                    break;
+                }
+                alpha[in[j] - 'A'] = 1;
+                last = in[j];
+            }
+        }
+        out[i] = suspicious ? "NO" : "YES";
+    }
+    for (int i = 0; i < t; i++) {
+        cout << out[i] << endl;
+    }
+}
